@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import Charts
 import UIKit
-import DGCharts
 
 struct BarChart: View {
   private var data: [Item]

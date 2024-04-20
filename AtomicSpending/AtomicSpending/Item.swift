@@ -34,4 +34,5 @@ enum Category: String, CaseIterable {
   case medical = "Medical"
   case debtPayment = "Debt Payments"
   case other = "Other"
+
 }

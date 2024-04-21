@@ -13,7 +13,7 @@ class TransactionListViewController: UIViewController {
   
   let expenseFormatter = NumberFormatter()
   let dateFormatter = DateFormatter()
-  var data: [Item] = [Item]()
+  var items: [Item] = []
   
   @IBOutlet weak var tableView: UITableView!
   var dates: [String] = [String]()
@@ -26,17 +26,30 @@ class TransactionListViewController: UIViewController {
     // Do any additional setup after loading the view.
     addButton.layer.cornerRadius = addButton.frame.width / 2
     expenseFormatter.numberStyle = .currency
+    getItems()
     
+    tableView.dataSource = self
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    getItems()
+  }
+
+  private func getItems() {
+    items = Item.getItems()
     
-    data = ViewController().getItemMockData()
-    dateFormatter.dateFormat = "MMM dd"
-    data = data.sorted {
+    items.sort {
       $0.date > $1.date
     }
+    
+    dateSections = []
+    dates = []
+    dateFormatter.dateFormat = "MMM dd"
     var offset = DateComponents()
     offset.hour = 24
     var lastDateSection = Calendar.current.date(byAdding: offset, to: Date())
-    for item in data {
+    for item in items {
       if (!Calendar.current.isDate(item.date, equalTo: lastDateSection!, toGranularity: .day)) {
         let section = DateSection(day: item.date)
         dateSections.append(section)
@@ -44,22 +57,26 @@ class TransactionListViewController: UIViewController {
         lastDateSection = item.date
       }
       dateSections[dateSections.count - 1].items.append(item)
-      
     }
-    
-    tableView.dataSource = self
+  
+    tableView.reloadData()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
-    
-    let selectedItem = data[selectedIndexPath.row]
+    var selectedItem: Item? = nil
+    if let selectedIndexPath = tableView.indexPathForSelectedRow {
+      selectedItem = dateSections[selectedIndexPath.section].items[selectedIndexPath.row]
+    }
     
     guard let creationViewController = segue.destination as? TransactionCreationViewController else {
       return
     }
     
     creationViewController.transactionToEdit = selectedItem
+    creationViewController.onCompose = { item in
+      item.save()
+    }
+ 
   }
 }
 
@@ -84,5 +101,13 @@ extension TransactionListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return dates[section]
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      items.removeAll(where: {item in item.id == dateSections[indexPath.section].items[indexPath.row].id})
+      Item.save(items)
+      getItems()
+    }
   }
 }

@@ -14,9 +14,12 @@ class TransactionCreationViewController: UIViewController {
   @IBOutlet weak var categoryTextBox: UITextField!
   @IBOutlet weak var dropDown: UIPickerView!
   @IBOutlet weak var datePicker: UIDatePicker!
+  var expense: Float = 0
+  @IBOutlet weak var composeButton: UIButton!
   
   
   var transactionToEdit: Item? = nil
+  var onCompose: ((Item) -> Void)? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,7 +29,7 @@ class TransactionCreationViewController: UIViewController {
     dropDown.dataSource = self
     dropDown.delegate = self
     
-    expenseTextBox.addTarget(self, action: #selector(expenseTextDidChange), for: .editingChanged)
+
     datePicker.contentHorizontalAlignment = .left
     if let item = transactionToEdit {
       descriptionTextBox.text = item.description
@@ -34,13 +37,33 @@ class TransactionCreationViewController: UIViewController {
       expenseTextBox.text = String(item.expense).currencyInputFormatting()
       titleLabel.title = "Edit Transaction"
       datePicker.date = item.date
+      composeButton.setTitle("Modify", for: .normal)
     }
   }
   
-  @objc func expenseTextDidChange(_ textField: UITextField) {
+  
+  @IBAction func expenseTextDidChange(_ sender: Any) {
     if let amountString = expenseTextBox.text?.currencyInputFormatting() {
       expenseTextBox.text = amountString
     }
+  }
+
+  
+  @IBAction func didTapComposeButton(_ sender: Any) {
+    var item: Item
+    if var editItem = transactionToEdit {
+      editItem.description = descriptionTextBox.text ?? "Unnamed"
+      editItem.expense = expenseTextBox.text?.toDouble() ?? 0
+      editItem.category = Category(rawValue: categoryTextBox.text!)!
+      editItem.date = datePicker.date
+      
+      item = editItem
+    } else {
+      item = Item(category: Category(rawValue: categoryTextBox.text!)!, description: descriptionTextBox.text ?? "Unnamed", expense: expenseTextBox.text?.toDouble() ?? 0, date: datePicker.date)
+    }
+    
+    onCompose?(item)
+    navigationController?.popViewController(animated: true)
   }
 }
 
@@ -96,4 +119,11 @@ extension String {
        
        return formatter.string(from: number)!
   }
+  
+  func toDouble() -> Double {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    let amt =  formatter.number(from: self)
+    
+    return amt?.doubleValue ?? 0}
 }

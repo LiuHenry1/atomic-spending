@@ -11,12 +11,12 @@ import Charts
 import UIKit
 
 struct BarChart: View {
-  private var data: [Item]
+  private var data: ExpenseByCategory
   private var budget: Float
   private var formatter: NumberFormatter
   
-  init(data: [Item], budget: Float) {
-    self.data = data.count == 0 ? [Item(category: Category.other, description: "None", expense: 0, date: Date())] : data
+  init(data: ExpenseByCategory, budget: Float) {
+    self.data = data
     self.budget = budget
     self.formatter = NumberFormatter()
     self.formatter.numberStyle = .currency
@@ -24,10 +24,10 @@ struct BarChart: View {
   
   var body: some View {
     GeometryReader { geometry in
-      Chart(data) { item in
-        BarMark(x: .value("Expense", item.expense))
-          .annotation(position: .overlay) {
-            Text(formatter.string(from: item.expense as NSNumber)!)
+      Chart() {
+        BarMark(x: .value("Expense", data.expense))
+          .annotation(position: .trailing) {
+            Text(formatter.string(from: data.expense as NSNumber)!)
           }
         RuleMark(x: .value("Budget", budget)).foregroundStyle(.red)
       }
@@ -36,13 +36,14 @@ struct BarChart: View {
 }
 
 struct SectorChart: View {
-  private var data: [Item]
-  private var total: Float {
-    data.reduce(0) {$0 + $1.expense}
+  private var data: [ExpenseByCategory]
+  private var total: Double {
+    data.reduce(0, {$0 + $1.expense})
   }
+  
   private var formatter: NumberFormatter
   
-  init(data: [Item]) {
+  init(data: [ExpenseByCategory]) {
     self.data = data
     self.formatter = NumberFormatter()
     self.formatter.numberStyle = .percent
@@ -50,19 +51,29 @@ struct SectorChart: View {
   
   var body: some View {
     GeometryReader { geometry in
-      Chart(data) { item in
-        SectorMark(
-          angle: .value("Expense", item.expense),
-          innerRadius: .ratio(0.618),
-          angularInset: 1.5
-        )
-        .cornerRadius(5)
-        .foregroundStyle(by: .value("Category", item.category.rawValue))
-        .annotation(position: .overlay) {
-          Text(verbatim: formatter.string(from: NSNumber(value: item.expense / total))!)
-            .font(.headline)
-            .fontWeight(.bold)
-            .padding(5)
+      Chart(data) { expenseByCategory in
+        if total != 0 {
+          SectorMark(
+            angle: .value("Expense", expenseByCategory.expense),
+            innerRadius: .ratio(0.618),
+            angularInset: 1.5
+          )
+          .cornerRadius(5)
+          .foregroundStyle(by: .value("Category", expenseByCategory.category.rawValue))
+          .annotation(position: .overlay) {
+            Text(verbatim: (expenseByCategory.expense / total != 0) ? formatter.string(from: NSNumber(value: expenseByCategory.expense / total))! : "")
+              .font(.headline)
+              .fontWeight(.bold)
+              .padding(5)
+          }
+        } else {
+          SectorMark(
+            angle: .value("Expense", 1),
+            innerRadius: .ratio(0.618),
+            angularInset: 1.5
+          )
+          .cornerRadius(5)
+          .foregroundStyle(Color.gray)
         }
       }
       .chartBackground { chartProxy in

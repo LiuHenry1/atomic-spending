@@ -19,6 +19,7 @@
 		4C78F8852BCB3D2E0060B472 /* Visuals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78F8842BCB3D2E0060B472 /* Visuals.swift */; };
 		4C9B890E2BD2C52900F5A488 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9B890D2BD2C52900F5A488 /* ItemTableViewCell.swift */; };
 		4CA7EBDD2BD0815A00875D82 /* CategoryExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7EBDC2BD0815A00875D82 /* CategoryExpenseCell.swift */; };
+		4CE9815A2BD4507A00EE401E /* TransactionCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE981592BD4507A00EE401E /* TransactionCreationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4C78F8842BCB3D2E0060B472 /* Visuals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visuals.swift; sourceTree = "<group>"; };
 		4C9B890D2BD2C52900F5A488 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		4CA7EBDC2BD0815A00875D82 /* CategoryExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpenseCell.swift; sourceTree = "<group>"; };
+		4CE981592BD4507A00EE401E /* TransactionCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCreationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				4C78F8842BCB3D2E0060B472 /* Visuals.swift */,
 				4C78F8802BCB18150060B472 /* Item.swift */,
 				4C78F8702BCB0E610060B472 /* Main.storyboard */,
+				4CE981592BD4507A00EE401E /* TransactionCreationViewController.swift */,
 				4C78F8732BCB0E630060B472 /* Assets.xcassets */,
 				4C78F8752BCB0E630060B472 /* LaunchScreen.storyboard */,
 				4C5299BE2BD2BFCF00A20AEF /* TransactionListViewController.swift */,
@@ -164,6 +167,7 @@
 				4C9B890E2BD2C52900F5A488 /* ItemTableViewCell.swift in Sources */,
 				4C78F8812BCB18150060B472 /* Item.swift in Sources */,
 				4C78F86F2BCB0E610060B472 /* ViewController.swift in Sources */,
+				4CE9815A2BD4507A00EE401E /* TransactionCreationViewController.swift in Sources */,
 				4C5299BD2BD2BDB400A20AEF /* Section.swift in Sources */,
 				4C78F86B2BCB0E610060B472 /* AppDelegate.swift in Sources */,
 				4C78F8852BCB3D2E0060B472 /* Visuals.swift in Sources */,

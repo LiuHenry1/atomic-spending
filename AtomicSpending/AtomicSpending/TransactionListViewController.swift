@@ -30,13 +30,13 @@ class TransactionListViewController: UIViewController {
     
     data = ViewController().getItemMockData()
     dateFormatter.dateFormat = "MMM dd"
-    let sortedData = data.sorted {
+    data = data.sorted {
       $0.date > $1.date
     }
     var offset = DateComponents()
     offset.hour = 24
     var lastDateSection = Calendar.current.date(byAdding: offset, to: Date())
-    for item in sortedData {
+    for item in data {
       if (!Calendar.current.isDate(item.date, equalTo: lastDateSection!, toGranularity: .day)) {
         let section = DateSection(day: item.date)
         dateSections.append(section)
@@ -48,6 +48,18 @@ class TransactionListViewController: UIViewController {
     }
     
     tableView.dataSource = self
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
+    
+    let selectedItem = data[selectedIndexPath.row]
+    
+    guard let creationViewController = segue.destination as? TransactionCreationViewController else {
+      return
+    }
+    
+    creationViewController.transactionToEdit = selectedItem
   }
 }
 

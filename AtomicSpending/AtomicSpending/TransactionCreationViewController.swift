@@ -34,7 +34,7 @@ class TransactionCreationViewController: UIViewController {
     if let item = transactionToEdit {
       descriptionTextBox.text = item.description
       categoryTextBox.text = item.category.rawValue
-      expenseTextBox.text = String(item.expense).currencyInputFormatting()
+      expenseTextBox.text = String(item.expense).toCurrencyFormat()
       titleLabel.title = "Edit Transaction"
       datePicker.date = item.date
       composeButton.setTitle("Modify", for: .normal)
@@ -97,6 +97,14 @@ extension TransactionCreationViewController: UIPickerViewDataSource, UIPickerVie
 }
 
 extension String {
+  func toCurrencyFormat() -> String{
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currencyAccounting
+    formatter.currencySymbol = "$"
+    formatter.minimumFractionDigits = 2
+    
+    return formatter.string(from: (self as NSString).doubleValue as NSNumber)!
+  }
   func currencyInputFormatting() -> String {
     var number: NSNumber!
     let formatter = NumberFormatter()

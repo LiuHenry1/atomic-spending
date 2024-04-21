@@ -8,7 +8,6 @@ Original App Design Project - README Template
 1. [Overview](#Overview)
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
-4. [Schema](#Schema)
 
 ## Overview
 
@@ -17,6 +16,9 @@ Original App Design Project - README Template
 An app that will allow users to manage their spendings. 
 Users can set budgets, itemize their transactions and visualize
 their spending.
+
+### Demo
+<img src="https://i.imgur.com/P0GIkTK.gif" alt="Video walkthrough">
 
 ### App Evaluation
 
@@ -40,13 +42,13 @@ their spending.
 
 ### 2. Screen Archetypes
 
-- [ ] Dashboard / Overview
+- [X] Dashboard / Overview
 * User can view a summary of their spending graphically
-- [ ] Transactions List View
+- [X] Transactions List View
 * Users can item view their transactions
-- [ ] Transactions Edit View
+- [X] Transactions Edit View
 * Users can create, edit, and remove transactions
-- [ ] Budget View
+- [X] Budget View
 * Users can edit their budget for each view
 
 ### 3. Navigation
@@ -59,29 +61,12 @@ their spending.
 
 **Flow Navigation** (Screen to Screen)
 
-- [ ] Dashboard
+- [X] Dashboard
 * Transactions View with Filter
-- [ ] Transaction View
+- [X] Transaction View
 * Transactions Edit View
 
 ## Wireframes
 
 <img src="https://i.imgur.com/VM30oLc.jpeg" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
-## Schema 
-
-[This section will be completed in Unit 9]
-
-### Models
-
-[Add table of models]
-
-### Networking
-
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]

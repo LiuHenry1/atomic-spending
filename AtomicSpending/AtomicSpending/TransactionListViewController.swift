@@ -11,9 +11,11 @@ class TransactionListViewController: UIViewController {
   
   @IBOutlet weak var addButton: UIButton!
   
+  var category: Category? = nil
   let expenseFormatter = NumberFormatter()
   let dateFormatter = DateFormatter()
   var items: [Item] = []
+  var itemsToDisplay: [Item] = []
   
   @IBOutlet weak var tableView: UITableView!
   var dates: [String] = [String]()
@@ -38,8 +40,11 @@ class TransactionListViewController: UIViewController {
 
   private func getItems() {
     items = Item.getItems()
-    
-    items.sort {
+    itemsToDisplay = items
+    if let category = category {
+      itemsToDisplay = itemsToDisplay.filter{item in item.category == category}
+    }
+    itemsToDisplay.sort {
       $0.date > $1.date
     }
     
@@ -49,7 +54,7 @@ class TransactionListViewController: UIViewController {
     var offset = DateComponents()
     offset.hour = 24
     var lastDateSection = Calendar.current.date(byAdding: offset, to: Date())
-    for item in items {
+    for item in itemsToDisplay {
       if (!Calendar.current.isDate(item.date, equalTo: lastDateSection!, toGranularity: .day)) {
         let section = DateSection(day: item.date)
         dateSections.append(section)

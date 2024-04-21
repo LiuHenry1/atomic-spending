@@ -12,7 +12,7 @@ import SwiftUI
 class ViewController: UIViewController {
   
   var items: [Item] = []
-  var budgets: [Category: Float] = [:]
+  var budgets: [Category: Double] = [:]
   var expensesByCategory: [ExpenseByCategory] = []
   
   @IBOutlet weak var tableView: UITableView!
@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     
     self.budgets = getBudgetMockData()
     getItems()
+    getExpensesByCategory()
     setUpPieChartView()
-    
     tableView.dataSource = self
     tableView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
@@ -35,24 +35,40 @@ class ViewController: UIViewController {
     ])
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+      return
+    }
+    
+    let selectedCategory = expensesByCategory[selectedIndexPath.row].category
+    
+    guard let transactionListViewController = segue.destination as? TransactionListViewController else {
+      return
+    }
+    
+    transactionListViewController.category = selectedCategory
+    
+    
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     getItems()
+    getExpensesByCategory()
+    setUpPieChartView()
+
+    tableView.reloadData()
+  }
+  
+  private func getExpensesByCategory(){
     expensesByCategory = []
     for category in Category.allCases {
       let expense = items.filter{$0.category == category}.reduce(0, {acc, item in
         return acc + item.expense
       })
-      if expense != 0 {
-        expensesByCategory.append(ExpenseByCategory(category: category, expense: expense))
-      }
+      expensesByCategory.append(ExpenseByCategory(category: category, expense: expense))
     }
-    if (expensesByCategory.count == 0) {
-      expensesByCategory.append(ExpenseByCategory(category: Category.none, expense: 0))
-    }
-    tableView.reloadData()
-    setUpPieChartView()
   }
   
   private func getItems() {
@@ -60,8 +76,8 @@ class ViewController: UIViewController {
   }
   
   
-  func getBudgetMockData() -> [Category: Float] {
-    let mockData: [Category: Float] = [
+  func getBudgetMockData() -> [Category: Double] {
+    let mockData: [Category: Double] = [
       Category.housing: 500.0,
       Category.utilies: 100.0,
       Category.insurance: 100.0,
@@ -74,11 +90,14 @@ class ViewController: UIViewController {
   }
   
   func setUpPieChartView() {
-    var data: [[Item]] = []
-    for category in Category.allCases {
-      data.append(items.filter {item in item.category == category})
+    var sectorChartUI: SectorChart
+    if expensesByCategory.reduce(0, {acc, item in acc + item.expense}) != 0 {
+      sectorChartUI = SectorChart(data: expensesByCategory)
+    } else {
+      sectorChartUI = SectorChart(data: [ExpenseByCategory(category: Category.none
+                                                           , expense: 0)])
     }
-    let hostingController = UIHostingController(rootView: SectorChart(data: expensesByCategory))
+    let hostingController = UIHostingController(rootView: sectorChartUI)
     addChild(hostingController)
     view.addSubview(hostingController.view)
     hostingController.didMove(toParent: self)
@@ -106,13 +125,10 @@ extension ViewController: UITableViewDataSource{
     cell.categoryLabel.text = Category.allCases[indexPath.row].rawValue
     
     let category = Category.allCases[indexPath.row]
-    let categoryData = expensesByCategory.filter {$0.category == category}
+    let categoryData = expensesByCategory.first(where: {$0.category == category})
     var barChartUI: BarChart
-    if categoryData.count != 0 {
-      barChartUI = BarChart(data: categoryData[0], budget: budgets[category] ?? Float.infinity)
-    } else {
-      barChartUI = BarChart(data: ExpenseByCategory(category: Category.none, expense: 0), budget: budgets[category] ?? Float.infinity)
-    }
+    barChartUI = BarChart(data: categoryData!, budget: budgets[category] ?? Double.infinity)
+
     let hostingController = UIHostingController(rootView: barChartUI)
     cell.contentView.addSubview(hostingController.view)
     hostingController.view.translatesAutoresizingMaskIntoConstraints = false

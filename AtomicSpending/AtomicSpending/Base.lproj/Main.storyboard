@@ -57,6 +57,138 @@
             </objects>
             <point key="canvasLocation" x="1910.6870229007632" y="-2.1126760563380285"/>
         </scene>
+        <!--Budget Planner-->
+        <scene sceneID="zfy-gW-AAi">
+            <objects>
+                <viewController id="3Je-vY-Pcg" customClass="BudgetViewController" customModule="AtomicSpending" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v1d-ch-86K">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cdq-3v-9b8">
+                                <rect key="frame" x="16" y="78" width="361" height="606"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Housing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAE-2H-15N">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D5Z-JE-fM7">
+                                        <rect key="frame" x="0.0" y="44" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Utilities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNT-E4-S3d">
+                                        <rect key="frame" x="0.0" y="88" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p7c-LZ-esn">
+                                        <rect key="frame" x="0.0" y="132" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-Gj-3Pq">
+                                        <rect key="frame" x="0.0" y="176" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J1z-Bh-SkO">
+                                        <rect key="frame" x="0.0" y="220" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aP-kZ-07U">
+                                        <rect key="frame" x="0.0" y="264" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JoQ-cp-Yif">
+                                        <rect key="frame" x="0.0" y="308" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhs-HW-PVK">
+                                        <rect key="frame" x="0.0" y="352" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTt-UP-DuC">
+                                        <rect key="frame" x="0.0" y="396" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medical" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZV-ZJ-2Mb">
+                                        <rect key="frame" x="0.0" y="440" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8C-8c-pId">
+                                        <rect key="frame" x="0.0" y="484" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debt Payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGO-0M-qYf">
+                                        <rect key="frame" x="0.0" y="528" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7jV-jg-xnu">
+                                        <rect key="frame" x="0.0" y="572" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnZ-4x-IWG">
+                                <rect key="frame" x="12" y="406" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yC-Tj-slf">
+                                <rect key="frame" x="166" y="694" width="61" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <connections>
+                                    <action selector="didTapSaveButton:" destination="3Je-vY-Pcg" eventType="touchUpInside" id="BVo-Rr-GTo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MZ6-hB-AYN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vnZ-4x-IWG" firstAttribute="leading" secondItem="v1d-ch-86K" secondAttribute="leadingMargin" constant="-4" id="1Ux-8H-TvP"/>
+                            <constraint firstItem="vnZ-4x-IWG" firstAttribute="top" secondItem="v1d-ch-86K" secondAttribute="top" constant="406" id="CeZ-9j-5MM"/>
+                            <constraint firstItem="7yC-Tj-slf" firstAttribute="top" secondItem="cdq-3v-9b8" secondAttribute="bottom" constant="10" id="cMz-nM-Ksj"/>
+                            <constraint firstItem="7yC-Tj-slf" firstAttribute="centerX" secondItem="v1d-ch-86K" secondAttribute="centerX" id="fYf-Ee-1b9"/>
+                            <constraint firstItem="cdq-3v-9b8" firstAttribute="top" secondItem="MZ6-hB-AYN" secondAttribute="top" constant="19" id="iSd-gb-s1U"/>
+                            <constraint firstItem="MZ6-hB-AYN" firstAttribute="trailing" secondItem="cdq-3v-9b8" secondAttribute="trailing" constant="16" id="nxS-rv-7MQ"/>
+                            <constraint firstItem="cdq-3v-9b8" firstAttribute="leading" secondItem="MZ6-hB-AYN" secondAttribute="leading" constant="16" id="rAO-Lb-vfP"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Budget Planner" image="dollarsign.circle.fill" catalog="system" id="Upb-Rk-iHA"/>
+                    <connections>
+                        <outlet property="debtTextField" destination="7jV-jg-xnu" id="2JI-4D-W7Z"/>
+                        <outlet property="foodTextField" destination="J1z-Bh-SkO" id="9n7-3X-LWL"/>
+                        <outlet property="housingTextField" destination="D5Z-JE-fM7" id="ORL-RA-qtt"/>
+                        <outlet property="insuranceTextField" destination="UTt-UP-DuC" id="wge-U2-pKB"/>
+                        <outlet property="medicalTextField" destination="o8C-8c-pId" id="9oM-EO-kYv"/>
+                        <outlet property="personalTextField" destination="JoQ-cp-Yif" id="KC7-oD-d4s"/>
+                        <outlet property="utilitiesTextField" destination="p7c-LZ-esn" id="GH8-pd-bVl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5iA-gd-J2L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916.7938931297708" y="694.36619718309862"/>
+        </scene>
         <!--Transaction List View Controller-->
         <scene sceneID="Ksb-Nt-8qH">
             <objects>
@@ -286,6 +418,7 @@
                     <connections>
                         <segue destination="DjQ-AP-LBc" kind="relationship" relationship="viewControllers" id="0Ch-J1-gQ3"/>
                         <segue destination="wVs-UW-QYc" kind="relationship" relationship="viewControllers" id="AhX-xm-bCR"/>
+                        <segue destination="3Je-vY-Pcg" kind="relationship" relationship="viewControllers" id="nfJ-kQ-nlw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86c-Ab-134" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -296,7 +429,7 @@
         <scene sceneID="bGi-Yd-j0d">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wVs-UW-QYc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Transactions" id="n09-m2-1m8"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="list.clipboard.fill" catalog="system" id="n09-m2-1m8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="C1U-TX-Gqr">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -315,7 +448,7 @@
         <scene sceneID="cbk-tr-cwB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DjQ-AP-LBc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Summary" id="OK0-tz-Atp"/>
+                    <tabBarItem key="tabBarItem" title="Summary" image="chart.pie.fill" catalog="system" id="OK0-tz-Atp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y8q-4t-3Dw">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -333,9 +466,12 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ZqP-Qx-O68"/>
-        <segue reference="o7K-sh-TRH"/>
+        <segue reference="nbZ-Us-JJa"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="chart.pie.fill" catalog="system" width="128" height="123"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="list.clipboard.fill" catalog="system" width="98" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

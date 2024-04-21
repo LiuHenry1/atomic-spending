@@ -12,10 +12,10 @@ import UIKit
 
 struct BarChart: View {
   private var data: ExpenseByCategory
-  private var budget: Double
+  private var budget: Int
   private var formatter: NumberFormatter
   
-  init(data: ExpenseByCategory, budget: Double) {
+  init(data: ExpenseByCategory, budget: Int) {
     self.data = data
     self.budget = budget
     self.formatter = NumberFormatter()

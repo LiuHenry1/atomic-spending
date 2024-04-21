@@ -12,7 +12,7 @@ import SwiftUI
 class ViewController: UIViewController {
   
   var items: [Item] = []
-  var budgets: [Category: Double] = [:]
+  var budgets: [Category: Int] = [:]
   var expensesByCategory: [ExpenseByCategory] = []
   
   @IBOutlet weak var tableView: UITableView!
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     
-    self.budgets = getBudgetMockData()
+    getBudgets()
     getItems()
     getExpensesByCategory()
     setUpPieChartView()
@@ -55,6 +55,7 @@ class ViewController: UIViewController {
     super.viewWillAppear(animated)
     
     getItems()
+    getBudgets()
     getExpensesByCategory()
     setUpPieChartView()
 
@@ -76,17 +77,16 @@ class ViewController: UIViewController {
   }
   
   
-  func getBudgetMockData() -> [Category: Double] {
-    let mockData: [Category: Double] = [
-      Category.housing: 500.0,
-      Category.utilies: 100.0,
-      Category.insurance: 100.0,
-      Category.medical: 100.0,
-      Category.food: 200.0,
-      Category.personal: 100.0,
-      Category.debtPayment: 100.0
-    ]
-    return mockData
+  private func getBudgets() {
+    let defaults = UserDefaults.standard
+    
+    
+    var budgets: [Category: Int] = [:]
+    for category in Category.allCases {
+      let budget = defaults.integer(forKey: category.rawValue)
+      budgets[category] = budget
+    }
+    self.budgets = budgets;
   }
   
   func setUpPieChartView() {
@@ -127,7 +127,7 @@ extension ViewController: UITableViewDataSource{
     let category = Category.allCases[indexPath.row]
     let categoryData = expensesByCategory.first(where: {$0.category == category})
     var barChartUI: BarChart
-    barChartUI = BarChart(data: categoryData!, budget: budgets[category] ?? Double.infinity)
+    barChartUI = BarChart(data: categoryData!, budget: budgets[category] ?? 0)
 
     let hostingController = UIHostingController(rootView: barChartUI)
     cell.contentView.addSubview(hostingController.view)
